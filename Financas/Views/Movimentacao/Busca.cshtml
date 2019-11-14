@@ -1,0 +1,68 @@
+﻿@model Financas.Models.BuscaMovimentacoesModel
+
+@using (Html.BeginForm("Busca", "Movimentacao", FormMethod.Get))
+{
+<div class="row">
+	<fieldset>
+		<legend>Data da Movimentacao</legend>
+		<div class="col-sm-6">
+			@Html.LabelFor(b => b.DataMinima, "Data Minima")
+			@Html.TextBoxFor(b => b.DataMaxima, new { @class = "form-control" })
+		</div>
+		<div class="col-sm-6">
+			@Html.LabelFor(b => b.DataMaxima, "Data Maxima")
+			@Html.TextBoxFor(b => b.DataMaxima, new { @class = "form-control" })
+		</div>
+	</fieldset>
+	<fieldset>
+		<legend>Valor da Movimentacao</legend>
+		<div class="col-sm-6">
+			@Html.LabelFor(b => b.ValorMinimo, "Valor Minimo")
+			@Html.TextBoxFor(b => b.ValorMaximo, new { @class = "form-control" })
+		</div>
+		<div class="col-sm-6">
+			@Html.LabelFor(b => b.ValorMaximo, "Valor Maximo")
+			@Html.TextBoxFor(b => b.ValorMaximo, new { @class = "form-control" })
+		</div>
+	</fieldset>
+	<fieldset>
+		<legend>UsuarioId e Tipo</legend>
+		<div class="col-sm-6">
+			@Html.LabelFor(b => b.Tipo, "Tipo")
+			@Html.EnumDropDownListFor(b => b.Tipo, new { @class = "form-control" })
+		</div>
+		<div class="col-sm-6">
+			@Html.LabelFor(b => b.UsuarioId, "UsuarioId")
+			@Html.DropDownListFor(b => b.UsuarioId, new SelectList(Model.Usuarios, "Id", "Nome"), "Escolha um editor")
+		</div>
+	</fieldset>
+	<br />
+	<input type="submit" value="Buscar" />
+</div>
+
+}
+<br />
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>Data</th>
+			<th>Valor</th>
+			<th>Tipo</th>
+			<th>Usuario</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach(var m in Model.Movimentacoes)
+		{
+		<tr>
+			<td>@m.Id</td>
+			<td>@m.Data</td>
+			<td>@m.Valor</td>
+			<td>@m.Tipo</td>
+			<td>@m.Usuario.Nome</td>
+		</tr>
+		}
+	</tbody>
+
+</table>

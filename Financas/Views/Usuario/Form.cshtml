@@ -1,0 +1,24 @@
+﻿@model Financas.Models.UsuarioModel
+
+@using (Html.BeginForm("Adiciona", "Usuario", FormMethod.Post))
+{
+	@Html.ValidationMessage("usuario.Invalido")
+	@Html.LabelFor(u => u.Nome, "Nome: ");
+	@Html.TextBoxFor(u => u.Nome, new { @class = "form-control" })
+	@Html.ValidationMessageFor(u => u.Nome)
+
+	@Html.LabelFor(u => u.Email, "Email: ");
+	@Html.TextBoxFor(u => u.Email, new { @class = "form-control" })
+	@Html.ValidationMessageFor(u => u.Email)
+
+	@Html.LabelFor(u => u.Senha, "Senha: ")
+	@Html.TextBoxFor(u => u.Senha, new { @class = "form-control" })
+	@Html.ValidationMessageFor(u => u.Senha)
+
+	@Html.LabelFor(u => u.ConfirmaSenha, "Confirma Senha: ")
+	@Html.TextBoxFor(u => u.ConfirmaSenha, new { @class = "form-control" })
+	@Html.ValidationMessageFor(u => u.ConfirmaSenha)
+
+	<br />
+	<input type="submit" value="Enviar" />
+}
